@@ -5,17 +5,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IUSTORIA | AI & Byznys - Test mozku</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        /* =========================================
+           1. IMPORT FONTS & VARIABLES
+           ========================================= */
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            /* Brand Colors (z gabrielkozik.com) */
+            --primary-color: #0f172a;
+            /* Dark Slate */
+            --secondary-color: #0ea5e9;
+            /* Sky Blue */
+            --accent-color: #6366f1;
+            /* Indigo */
+            --text-color: #334155;
+            /* Slate 700 */
+            --light-gray: #f8fafc;
+            /* Slate 50 */
+            --white: #ffffff;
+
+            /* Status Colors */
+            --warning-color: #f59e0b;
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+
+            --border-radius: 12px;
+            --section-spacing: 80px;
+        }
+
+        /* =========================================
+           2. GLOBAL RESET & TYPOGRAPHY
+           ========================================= */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--white);
+            padding-top: 70px;
+            /* Offset pro fixní menu */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.02em;
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         .fade-in {
@@ -33,108 +108,368 @@
                 transform: translateY(0);
             }
         }
+
+        /* =========================================
+           3. NAVIGATION
+           ========================================= */
+        .main-nav {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links span {
+            color: #94a3b8;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /* =========================================
+           4. HERO SECTIONS
+           ========================================= */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: var(--white);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5em, 5vw, 3.5em);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero h1 span {
+            color: var(--secondary-color);
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        /* =========================================
+           5. COMPONENTS (Quiz Card, Buttons)
+           ========================================= */
+        .quiz-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85em;
+            font-weight: 700;
+            color: #94a3b8;
+        }
+
+        .progress-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            height: 6px;
+            width: 30px;
+            border-radius: 10px;
+            background-color: var(--light-gray);
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background-color: var(--secondary-color);
+        }
+
+        .answer-btn {
+            width: 100%;
+            text-align: left;
+            padding: 20px;
+            margin-bottom: 12px;
+            background: var(--white);
+            border: 2px solid var(--light-gray);
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 1.05rem;
+            color: var(--text-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .answer-btn:hover {
+            border-color: var(--secondary-color);
+            background-color: #f0f9ff;
+            transform: translateX(5px);
+        }
+
+        .answer-btn i {
+            color: var(--light-gray);
+            transition: color 0.2s;
+        }
+
+        .answer-btn:hover i {
+            color: var(--secondary-color);
+        }
+
+        /* Results */
+        .result-card {
+            padding: 50px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .result-icon-box {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .result-title {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+
+        .result-subtitle {
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9em;
+            margin-bottom: 25px;
+            opacity: 0.7;
+        }
+
+        .result-description {
+            font-size: 1.15em;
+            max-width: 700px;
+            margin: 0 auto 35px;
+        }
+
+        .action-box {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* CTA Grid */
+        .cta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .grid-card {
+            padding: 40px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .dark-card {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .dark-card h3 {
+            color: var(--white);
+        }
+
+        .dark-card p {
+            color: #94a3b8;
+        }
+
+        .white-card {
+            background-color: var(--white);
+            border: 1px solid var(--light-gray);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Buttons */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            color: var(--white);
+            padding: 16px 30px;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4);
+        }
+
+        .secondary-btn {
+            background: var(--light-gray);
+            color: var(--primary-color);
+        }
+
+        .secondary-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            box-shadow: none;
+        }
+
+        /* Hidden Utility */
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .quiz-card {
+                padding: 25px;
+            }
+        }
     </style>
 </head>
 
-<body class="min-h-screen bg-slate-50 text-slate-900">
-    <!-- Navbar -->
-    <nav class="bg-white shadow-sm py-4 px-6 md:px-12 flex justify-between items-center sticky top-0 z-50">
-        <div class="font-bold text-xl tracking-tight text-slate-800 flex items-center gap-2">
-            <i data-lucide="zap" class="text-blue-600 w-6 h-6"></i>
-            <span>IUSTORIA <span class="text-slate-400 font-light">| AI & Byznys</span></span>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-logo">
+            <i data-lucide="zap" class="text-blue-600"></i>
+            IUSTORIA | AI & Byznys
         </div>
-        <div class="text-sm font-medium text-slate-500 hidden sm:block">
-            Budujeme efektivní a chytrou komunitu.
+        <div class="nav-links">
+            <span>Budujeme efektivní a chytrou komunitu</span>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-4 py-12">
+    <main class="container">
         <!-- Quiz Stage -->
-        <div id="quiz-stage">
-            <div class="text-center mb-12">
-                <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">
-                    Vyděláváš díky AI, nebo <span class="text-blue-600">zakrňuješ</span>?
-                </h1>
-                <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-                    Studie od Antropicu (tvůrci Claude) ukázala, že špatné používání AI snižuje tvé schopnosti řešit
-                    problémy až o 17 %. Zjisti za 2 minuty, jaký typ AI uživatele jsi a jak to změnit.
-                </p>
-            </div>
+        <section id="quiz-stage" class="hero fade-in">
+            <h1>Vyděláváš díky AI,<br>nebo <span>zakrňuješ</span>?</h1>
+            <p>Studie od Antropicu ukázala, že špatné používání AI snižuje tvé schopnosti řešit problémy až o 17 %.
+                Zjisti za 2 minuty, jaký typ AI uživatele jsi.</p>
 
-            <!-- Quiz Card -->
-            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 transition-all">
-                <div
-                    class="mb-8 flex justify-between items-center text-sm font-semibold text-slate-400 uppercase tracking-wider">
+            <div class="quiz-card">
+                <div class="progress-header">
                     <span id="question-counter">Otázka 1 ze 3</span>
-                    <div class="flex gap-1" id="progress-bar">
-                        <!-- Progress dots injected here -->
-                    </div>
+                    <div class="progress-dots" id="progress-bar"></div>
                 </div>
 
-                <h2 id="question-text" class="text-2xl font-bold text-slate-800 mb-8 leading-tight">
-                    <!-- Question injected here -->
-                </h2>
+                <h2 id="question-text"></h2>
 
-                <div id="answer-options" class="space-y-4">
-                    <!-- Answers injected here -->
-                </div>
+                <div id="answer-options"></div>
             </div>
-        </div>
+        </section>
 
-        <!-- Result Stage (Hidden by default) -->
-        <div id="result-stage" class="hidden fade-in">
-            <div class="text-center mb-10">
-                <h2 class="text-sm font-bold text-blue-600 uppercase tracking-widest mb-2">Tvůj výsledek</h2>
-                <h1 class="text-4xl font-extrabold text-slate-900">Tohle dělá AI s tvým mozkem</h1>
+        <!-- Result Stage -->
+        <section id="result-stage" class="hidden fade-in">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <span class="feature-tag">Tvůj výsledek</span>
+                <h1 style="font-size: 3em;">Tohle dělá AI s tvým mozkem</h1>
             </div>
 
-            <div id="result-card"
-                class="rounded-3xl p-8 md:p-12 border-2 shadow-lg mb-12 flex flex-col items-center text-center">
-                <div class="mb-6 p-4 bg-white rounded-full shadow-sm" id="result-icon">
-                    <!-- Icon injected here -->
-                </div>
-                <h3 id="result-title" class="text-3xl font-bold mb-2"></h3>
-                <p id="result-subtitle" class="text-lg font-semibold opacity-80 mb-6 uppercase tracking-wide"></p>
-                <p id="result-description" class="text-lg mb-8 max-w-2xl leading-relaxed"></p>
-                <div class="bg-white/60 p-6 rounded-2xl w-full max-w-2xl border border-blue-100">
-                    <h4 class="font-bold mb-2 flex items-center justify-center gap-2">
-                        <i data-lucide="zap" class="w-5 h-5"></i> Co s tím dál?
+            <div id="result-card" class="result-card">
+                <div class="result-icon-box" id="result-icon"></div>
+                <h3 id="result-title" class="result-title"></h3>
+                <p id="result-subtitle" class="result-subtitle"></p>
+                <p id="result-description" class="result-description"></p>
+
+                <div class="action-box">
+                    <h4 style="margin-top: 0; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <i data-lucide="zap" style="width: 20px;"></i> Co s tím dál?
                     </h4>
-                    <p id="result-action" class="font-medium"></p>
+                    <p id="result-action" style="margin-bottom: 0; font-weight: 500;"></p>
                 </div>
             </div>
 
-            <!-- CTA Section -->
-            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                <div class="bg-slate-900 rounded-2xl p-8 text-white shadow-xl">
-                    <h3 class="text-2xl font-bold mb-3">AI Workshop pro SME</h3>
-                    <p class="text-slate-300 mb-6">Nauč se pokročilé promptování v Gemini a NotebookLM. Získej
-                        konkurenční výhodu bez kognitivního offloadingu.</p>
-                    <a href="https://ai-workshop.cz" target="_blank"
-                        class="block text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-xl transition-colors w-full">
-                        Chci na workshop
-                    </a>
+            <!-- CTA Grid -->
+            <div class="cta-grid">
+                <div class="grid-card dark-card">
+                    <h3>AI Workshop pro SME</h3>
+                    <p>Nauč se pokročilé promptování v Gemini a NotebookLM. Získej konkurenční výhodu bez kognitivního
+                        offloadingu.</p>
+                    <a href="https://ai-workshop.cz" target="_blank" class="cta-button">Chci na workshop</a>
                 </div>
 
-                <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-xl flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-3 text-slate-900">Networking Pod Pálavou</h3>
-                        <p class="text-slate-600 mb-6">Pojďme to probrat osobně. Spojujeme aktivní podnikatele, sdílíme
-                            know-how a budujeme silný region.</p>
-                    </div>
+                <div class="grid-card white-card">
+                    <h3>Networking Pod Pálavou</h3>
+                    <p>Pojďme to probrat osobně. Spojujeme aktivní podnikatele, sdílíme know-how a budujeme silný
+                        region.</p>
                     <a href="https://www.pod-palavou.cz/klubova-setkani" target="_blank"
-                        class="block text-center bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-3 px-6 rounded-xl transition-colors w-full border border-slate-300">
-                        Zobrazit nejbližší akce
-                    </a>
+                        class="cta-button secondary-btn">Zobrazit nejbližší akce</a>
                 </div>
             </div>
 
-            <div class="mt-12 text-center">
-                <button onclick="resetQuiz()" class="text-slate-400 hover:text-slate-600 font-medium underline">
-                    Udělat si kvíz znovu
-                </button>
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="#" onclick="event.preventDefault(); resetQuiz();"
+                    style="color: #94a3b8; font-size: 0.9em; text-decoration: underline;">Udělat si kvíz znovu</a>
             </div>
-        </div>
+        </section>
     </main>
 
     <script>
@@ -173,8 +508,8 @@
                 title: "AI Delegátor",
                 subtitle: "Rychlý výstup, ale mozek v pohotovostním režimu",
                 icon: "alert-triangle",
-                iconColor: "text-red-500",
-                color: "bg-red-50 border-red-200 text-red-800",
+                iconColor: "#ef4444",
+                cssClass: "bg-red-50 border-red-200 text-red-800",
                 description: "Zadáváš práci a slepě přebíráš výsledky. Podle studie Antropicu je tohle nejrychlejší cesta k zakrnění tvých dovedností. AI za tebe zvedá těžké váhy, ale tvoje svaly slábnou. Pokud AI zítra vypadne, jsi v průšvihu.",
                 action: "Zaveď 'záměrné tření'. Donuť se výstupy číst, nekopíruj naslepo. Přidej se na můj workshop a naučím tě AI používat jako experta, ne jako sluhu."
             },
@@ -182,8 +517,8 @@
                 title: "Progresivně závislý",
                 subtitle: "Rychle to vzdáváš",
                 icon: "alert-triangle",
-                iconColor: "text-orange-500",
-                color: "bg-orange-50 border-orange-200 text-orange-800",
+                iconColor: "#f59e0b",
+                cssClass: "bg-orange-50 border-orange-200 text-orange-800",
                 description: "Máš dobrou snahu začít sám, ale jakmile přijde první frustrace, házíš ručník do ringu a deleguješ to na AI. Přicházíš tak o ten nejdůležitější moment učení – překonání problému.",
                 action: "Použij AI jako učitele, když se zasekneš. Neříkej 'napiš to za mě', řekni 'vysvětli mi, jak mám postupovat dál'. Ukážu ti jak na to na mém školení."
             },
@@ -191,8 +526,8 @@
                 title: "Iterativní patlal",
                 subtitle: "Ping-pong bez pochopení",
                 icon: "refresh-ccw",
-                iconColor: "text-yellow-500",
-                color: "bg-yellow-50 border-yellow-200 text-yellow-800",
+                iconColor: "#eab308",
+                cssClass: "bg-yellow-50 border-yellow-200 text-yellow-800",
                 description: "Házíš chyby zpátky do stroje tak dlouho, dokud to nefunguje. Jsi jenom most pro copy-paste. Výsledek sice máš, ale vůbec netušíš, proč to předtím nefungovalo.",
                 action: "Začni číst chybové hlášky a výstupy. Pokud nevíš proč AI udělala chybu, dotaž se jí. Rád s tebou proberu efektivní AI postupy na našem dalším networkingu."
             },
@@ -200,8 +535,8 @@
                 title: "Konceptuální badatel",
                 subtitle: "Růstový mindset. Tohle je ideál!",
                 icon: "brain",
-                iconColor: "text-green-500",
-                color: "bg-green-50 border-green-200 text-green-800",
+                iconColor: "#10b981",
+                cssClass: "bg-green-50 border-green-200 text-green-800",
                 description: "Gratuluji. K AI přistupuješ jako k profesorovi. Než začneš tvořit, necháš si vysvětlit principy. Učíš se, rosteš a buduješ si nezastupitelnou expertízu ve světě generativního obsahu.",
                 action: "Tohle je přesně ten přístup, který učíme. Přijď se podělit o své zkušenosti na náš networking Pod Pálavou, lidé jako ty inspirují ostatní."
             },
@@ -209,8 +544,8 @@
                 title: "Hybridní analytik",
                 subtitle: "Chytrý delegát, který prověřuje",
                 icon: "check-circle",
-                iconColor: "text-teal-500",
-                color: "bg-teal-50 border-teal-200 text-teal-800",
+                iconColor: "#14b8a6",
+                cssClass: "bg-teal-50 border-teal-200 text-teal-800",
                 description: "Necháš AI udělat těžkou práci, ale nutíš ji vysvětlovat její kroky. Přečteš si složení na etiketě dřív, než se do jídla pustíš. Tvoje dovednosti zůstávají ostré.",
                 action: "Skvělá práce. Na mém dalším workshopu pro SME si ukážeme, jak tento postup automatizovat pomocí pokročilých promptů v Gemini a NotebookLM."
             }
@@ -224,25 +559,23 @@
             document.getElementById('question-counter').textContent = `Otázka ${currentQuestion + 1} ze ${questions.length}`;
             document.getElementById('question-text').textContent = q.question;
 
-            // Render progress bar
             const progressContainer = document.getElementById('progress-bar');
             progressContainer.innerHTML = '';
             questions.forEach((_, idx) => {
                 const dot = document.createElement('div');
-                dot.className = `h-2 w-8 rounded-full ${idx <= currentQuestion ? 'bg-blue-600' : 'bg-slate-200'}`;
+                dot.className = `dot ${idx <= currentQuestion ? 'active' : ''}`;
                 progressContainer.appendChild(dot);
             });
 
-            // Render answers
             const answersContainer = document.getElementById('answer-options');
             answersContainer.innerHTML = '';
-            q.answers.forEach((answer, index) => {
+            q.answers.forEach((answer) => {
                 const btn = document.createElement('button');
-                btn.className = "w-full text-left p-4 rounded-xl border-2 border-slate-100 hover:border-blue-600 hover:bg-blue-50 transition-all flex items-center justify-between group fade-in";
+                btn.className = "answer-btn fade-in";
                 btn.onclick = () => handleAnswer(answer.type);
                 btn.innerHTML = `
-                    <span class="text-slate-700 font-medium">${answer.text}</span>
-                    <i data-lucide="chevron-right" class="text-slate-300 group-hover:text-blue-600 transition-colors w-5 h-5 flex-shrink-0 ml-4"></i>
+                    <span>${answer.text}</span>
+                    <i data-lucide="chevron-right"></i>
                 `;
                 answersContainer.appendChild(btn);
             });
@@ -267,9 +600,9 @@
             document.getElementById('result-stage').classList.remove('hidden');
 
             const card = document.getElementById('result-card');
-            card.className = `rounded-3xl p-8 md:p-12 border-2 ${data.color} shadow-lg mb-12 flex flex-col items-center text-center fade-in`;
+            card.className = `result-card fade-in ${data.cssClass}`;
 
-            document.getElementById('result-icon').innerHTML = `<i data-lucide="${data.icon}" class="w-12 h-12 ${data.iconColor}"></i>`;
+            document.getElementById('result-icon').innerHTML = `<i data-lucide="${data.icon}" style="width: 40px; height: 40px; color: ${data.iconColor}"></i>`;
             document.getElementById('result-title').textContent = data.title;
             document.getElementById('result-subtitle').textContent = data.subtitle;
             document.getElementById('result-description').textContent = data.description;
