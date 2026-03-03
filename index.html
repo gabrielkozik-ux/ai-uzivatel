@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,8 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -15,24 +17,34 @@
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
         }
+
         .fade-in {
             animation: fadeIn 0.5s ease-out forwards;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
+
 <body class="min-h-screen bg-slate-50 text-slate-900">
     <!-- Navbar -->
     <nav class="bg-white shadow-sm py-4 px-6 md:px-12 flex justify-between items-center sticky top-0 z-50">
         <div class="font-bold text-xl tracking-tight text-slate-800 flex items-center gap-2">
-           <i data-lucide="zap" class="text-blue-600 w-6 h-6"></i>
-           <span>IUSTORIA <span class="text-slate-400 font-light">| AI & Byznys</span></span>
+            <i data-lucide="zap" class="text-blue-600 w-6 h-6"></i>
+            <span>IUSTORIA <span class="text-slate-400 font-light">| AI & Byznys</span></span>
         </div>
         <div class="text-sm font-medium text-slate-500 hidden sm:block">
-          Budujeme efektivní a chytrou komunitu.
+            Budujeme efektivní a chytrou komunitu.
         </div>
     </nav>
 
@@ -44,23 +56,25 @@
                     Vyděláváš díky AI, nebo <span class="text-blue-600">zakrňuješ</span>?
                 </h1>
                 <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-                    Studie od Antropicu (tvůrci Claude) ukázala, že špatné používání AI snižuje tvé schopnosti řešit problémy až o 17 %. Zjisti za 2 minuty, jaký typ AI uživatele jsi a jak to změnit.
+                    Studie od Antropicu (tvůrci Claude) ukázala, že špatné používání AI snižuje tvé schopnosti řešit
+                    problémy až o 17 %. Zjisti za 2 minuty, jaký typ AI uživatele jsi a jak to změnit.
                 </p>
             </div>
 
             <!-- Quiz Card -->
             <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 transition-all">
-                <div class="mb-8 flex justify-between items-center text-sm font-semibold text-slate-400 uppercase tracking-wider">
+                <div
+                    class="mb-8 flex justify-between items-center text-sm font-semibold text-slate-400 uppercase tracking-wider">
                     <span id="question-counter">Otázka 1 ze 3</span>
                     <div class="flex gap-1" id="progress-bar">
                         <!-- Progress dots injected here -->
                     </div>
                 </div>
-                
+
                 <h2 id="question-text" class="text-2xl font-bold text-slate-800 mb-8 leading-tight">
                     <!-- Question injected here -->
                 </h2>
-                
+
                 <div id="answer-options" class="space-y-4">
                     <!-- Answers injected here -->
                 </div>
@@ -74,7 +88,8 @@
                 <h1 class="text-4xl font-extrabold text-slate-900">Tohle dělá AI s tvým mozkem</h1>
             </div>
 
-            <div id="result-card" class="rounded-3xl p-8 md:p-12 border-2 shadow-lg mb-12 flex flex-col items-center text-center">
+            <div id="result-card"
+                class="rounded-3xl p-8 md:p-12 border-2 shadow-lg mb-12 flex flex-col items-center text-center">
                 <div class="mb-6 p-4 bg-white rounded-full shadow-sm" id="result-icon">
                     <!-- Icon injected here -->
                 </div>
@@ -93,20 +108,24 @@
             <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                 <div class="bg-slate-900 rounded-2xl p-8 text-white shadow-xl">
                     <h3 class="text-2xl font-bold mb-3">AI Workshop pro SME</h3>
-                    <p class="text-slate-300 mb-6">Nauč se pokročilé promptování v Gemini a NotebookLM. Získej konkurenční výhodu bez kognitivního offloadingu.</p>
-                    <button class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-xl transition-colors w-full">
+                    <p class="text-slate-300 mb-6">Nauč se pokročilé promptování v Gemini a NotebookLM. Získej
+                        konkurenční výhodu bez kognitivního offloadingu.</p>
+                    <a href="https://ai-workshop.cz" target="_blank"
+                        class="block text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-xl transition-colors w-full">
                         Chci na workshop
-                    </button>
+                    </a>
                 </div>
-                
+
                 <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-xl flex flex-col justify-between">
                     <div>
                         <h3 class="text-2xl font-bold mb-3 text-slate-900">Networking Pod Pálavou</h3>
-                        <p class="text-slate-600 mb-6">Pojďme to probrat osobně. Spojujeme aktivní podnikatele, sdílíme know-how a budujeme silný region.</p>
+                        <p class="text-slate-600 mb-6">Pojďme to probrat osobně. Spojujeme aktivní podnikatele, sdílíme
+                            know-how a budujeme silný region.</p>
                     </div>
-                    <button class="bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-3 px-6 rounded-xl transition-colors w-full border border-slate-300">
+                    <a href="https://www.pod-palavou.cz/klubova-setkani" target="_blank"
+                        class="block text-center bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-3 px-6 rounded-xl transition-colors w-full border border-slate-300">
                         Zobrazit nejbližší akce
-                    </button>
+                    </a>
                 </div>
             </div>
 
@@ -204,7 +223,7 @@
             const q = questions[currentQuestion];
             document.getElementById('question-counter').textContent = `Otázka ${currentQuestion + 1} ze ${questions.length}`;
             document.getElementById('question-text').textContent = q.question;
-            
+
             // Render progress bar
             const progressContainer = document.getElementById('progress-bar');
             progressContainer.innerHTML = '';
@@ -249,7 +268,7 @@
 
             const card = document.getElementById('result-card');
             card.className = `rounded-3xl p-8 md:p-12 border-2 ${data.color} shadow-lg mb-12 flex flex-col items-center text-center fade-in`;
-            
+
             document.getElementById('result-icon').innerHTML = `<i data-lucide="${data.icon}" class="w-12 h-12 ${data.iconColor}"></i>`;
             document.getElementById('result-title').textContent = data.title;
             document.getElementById('result-subtitle').textContent = data.subtitle;
@@ -276,4 +295,5 @@
         };
     </script>
 </body>
+
 </html>
